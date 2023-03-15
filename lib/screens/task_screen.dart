@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Widgets/tasks_list.dart';
+import '../models/task_data.dart';
 import '../models/tasks.dart';
 import 'add_task_screen.dart';
+import 'package:provider/provider.dart';
 
-class TasksScreen extends StatefulWidget {
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-
-  List<Tasks> tasks = [
-    Tasks(name: 'Buy milk'),
-    Tasks(name: 'Finish Homework'),
-    Tasks(name: 'Eat Healthy'),
-  ];
-
-
-  @override
+class TasksScreen extends StatelessWidget {
+  // reason in task list class
+//   @override
+//   State<TasksScreen> createState() => _TasksScreenState();
+// }
+//
+// class _TasksScreenState extends State<TasksScreen> {
+//   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
@@ -32,15 +26,19 @@ class _TasksScreenState extends State<TasksScreen> {
               context: context,
               builder: (BuildContext context) => SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: AddTaskScreen( (newTask) {
-                    tasks.add(Tasks(name: newTask),);
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddTaskScreen((newTask) {
+                    // tasks.add(Tasks(name: newTask),);
+                    Provider.of<TaskData>(context).tasks.add(
+                          Tasks(name: newTask),
+                        );
                     Navigator.pop(context);
-                  }),
+                  },),
                 ),
               ),
             );
-          }),
+          },),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -69,7 +67,7 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontSize: MediaQuery.of(context).devicePixelRatio * 12),
                 ),
                 Text(
-                  '${tasks.length} tasks',
+                  "${Provider.of<TaskData>(context).taskCount} tasks",
                   style: GoogleFonts.openSans(
                       fontSize: MediaQuery.of(context).devicePixelRatio * 5.5,
                       fontWeight: FontWeight.w500,
@@ -93,8 +91,8 @@ class _TasksScreenState extends State<TasksScreen> {
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25),
                       topRight: Radius.circular(25),
-                    )),
-              )),
+                    ),),
+              ),),
         ],
       ),
     );
