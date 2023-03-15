@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_todo/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  late Function addTaskCallback;
+  //we don't need this anymore hm directly us list m add kr dege isko jo models k undr bnai hai via provider
+  // late Function addTaskCallback;
+  // AddTaskScreen(this.addTaskCallback);
+  // onpressed wagerah pr listen false krna
   static late String newTaskTitle;
-  AddTaskScreen(this.addTaskCallback);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +53,15 @@ class AddTaskScreen extends StatelessWidget {
               style: ButtonStyle(
                   backgroundColor:
                   MaterialStateProperty.all(Colors.lightBlueAccent)),
-              onPressed: () => addTaskCallback(newTaskTitle),
+               onPressed: () {
+                Provider.of<TaskData>(context , listen: false).addTask(newTaskTitle);
+                //isme simply .task.add nhi krna hai usme android studio koi error nhi dega but tumhara notifylistner krna jruri hai
+                // vo kaam nhi krega kyuki vo ho na ho koi frk nhi pdega yha se add krne k try krega to + bn avo add hoga na hi
+                // nums count hoge sari dikkat hogi bs
+                Navigator.pop(context);
+              },
+              // we dont need this method reason sbse upr hai
+                  // addTaskCallback(newTaskTitle),
               // is function ke undr newTaskTile mtlb newTask dalkr hm usko vha pass kr rhe hai
               // is class k constructor ke through task screen mai
               child: Text(

@@ -6,12 +6,14 @@ class TasksListTile extends StatelessWidget {
   // pehle mene bs final Function bnakr niche checkBoxClicked() ye lga diya tha to
   // error arha tha
   final void Function(bool?) checkBoxClicked;
+  final void Function()? longPressDetected;
 
-  TasksListTile({required this.taskTitle , required this.isChecked , required this.checkBoxClicked});
+  TasksListTile({required this.taskTitle , required this.isChecked , required this.checkBoxClicked , required this.longPressDetected});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onLongPress: longPressDetected,
       leading: Text(
         taskTitle,
         style: TextStyle(

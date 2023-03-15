@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Widgets/tasks_list.dart';
 import '../models/task_data.dart';
-import '../models/tasks.dart';
 import 'add_task_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -28,13 +27,7 @@ class TasksScreen extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: AddTaskScreen((newTask) {
-                    // tasks.add(Tasks(name: newTask),);
-                    Provider.of<TaskData>(context).tasks.add(
-                          Tasks(name: newTask),
-                        );
-                    Navigator.pop(context);
-                  },),
+                  child: AddTaskScreen(),
                 ),
               ),
             );
@@ -79,7 +72,7 @@ class TasksScreen extends StatelessWidget {
           Expanded(
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 15),
-                child: TasksList(tasks),
+                child: TasksList(),
                 //   ListView.builder(
                 //   itemCount: items.length,
                 //   itemBuilder: (context, int index) {

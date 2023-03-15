@@ -30,6 +30,7 @@ class TasksList extends StatelessWidget {
       return ListView.builder(
         physics: BouncingScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
+          final currentTask = taskData.tasks[index];
           return TasksListTile(
             // taskTitle: tasks[index].name,
             // isChecked: tasks[index].isDone,
@@ -42,12 +43,17 @@ class TasksList extends StatelessWidget {
             //   taskTitle: widget.tasks[index].name, baki sare bh ese hi the then provider mai chng hogye
             // taskTitle: Provider.of<TaskData>(context).tasks[index].name,
             //ese sare bh consumer ki vjh se chng hogye
-            taskTitle: taskData.tasks[index].name,
-            isChecked: taskData.tasks[index].isDone,
+            taskTitle: currentTask.name,
+            isChecked: currentTask.isDone,
             checkBoxClicked: (checkBoxState) {
+              taskData.updateTask(currentTask);
+              //now as ye stless widegt bn gya hai hm taskdata mai ek nya method bnakr usko call krkr checkbox ko update krege
               // setState(() {
               //   Provider.of<TaskData>(context).tasks[index].toggleDone();
               // });
+            },
+            longPressDetected: () {
+              taskData.deleteTask(currentTask);
             },
           );
         },
