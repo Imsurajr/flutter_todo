@@ -9,9 +9,6 @@ class TaskData extends ChangeNotifier {
     Tasks(name: 'Eat Healthy'),
   ];
 
-  //using this unmodifiable list view will make sure ki hm glte se _tasks wali mai add na krde vese private mai add nhi hoga
-  // but vo code mai or bh khi jgh tasks ki list ki jrurat pd rhi hai hme to vha hme list ka substitute ek getter
-  // bhjna hi tha to usko better hai unmodifiable bhjo jisse ye jo lisner wali dikkata hai ki vo add krna reh jaye vo khtm hojaye
   UnmodifiableListView<Tasks> get tasks {
     return UnmodifiableListView(_tasks);
   }
@@ -26,17 +23,13 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTask(Tasks task)
-  {
+  void updateTask(Tasks task) {
     task.toggleDone();
     notifyListeners();
   }
 
-  void deleteTask(Tasks task)
-  {
+  void deleteTask(Tasks task) {
     _tasks.remove(task);
     notifyListeners();
   }
 }
-
-

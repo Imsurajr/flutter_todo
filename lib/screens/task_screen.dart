@@ -6,32 +6,26 @@ import 'add_task_screen.dart';
 import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
-  // reason in task list class
-//   @override
-//   State<TasksScreen> createState() => _TasksScreenState();
-// }
-//
-// class _TasksScreenState extends State<TasksScreen> {
-//   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.lightBlueAccent,
-          onPressed: () {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              context: context,
-              builder: (BuildContext context) => SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom),
-                  child: AddTaskScreen(),
-                ),
+        child: Icon(Icons.add),
+        backgroundColor: Colors.lightBlueAccent,
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            context: context,
+            builder: (BuildContext context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskScreen(),
               ),
-            );
-          },),
+            ),
+          );
+        },
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -70,22 +64,18 @@ class TasksScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: TasksList(),
-                //   ListView.builder(
-                //   itemCount: items.length,
-                //   itemBuilder: (context, int index) {
-                //     return items[index];
-                //   },
-                // ),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
-                    ),),
-              ),),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TasksList(),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  topRight: Radius.circular(25),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
