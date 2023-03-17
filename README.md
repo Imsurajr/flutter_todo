@@ -1,7 +1,6 @@
 # flutter_todo
 
-A new Flutter project.
-
+New To-Do list created using Flutter.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
