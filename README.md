@@ -1,6 +1,6 @@
 # flutter_todo
 
-New To-Do list created using Flutter.
+New To-Do list created using Dart.
 ## Getting Started
 
 This project is a starting point for a Flutter application , this project is created using provider package.
